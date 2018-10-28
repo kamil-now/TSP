@@ -20,7 +20,22 @@ public class Helper {
         }
         return retval;
     }
-
+    static boolean arrayContains(int[] tab, int x) {
+        for (int i = 0; i < tab.length; i++) {
+            if (tab[i] == x) {
+                return true;
+            }
+        }
+        return false;
+    }
+    static int getIndex(int[] tab, int x) throws Exception {
+        for (int i = 0; i < tab.length; i++) {
+            if (tab[i] == x) {
+                return i;
+            }
+        }
+        throw new Exception("ARRAY DOES NOT CONTAIN GIVEN ELEMENT");
+    }
     static void displayArray(int[][] tab) {
         for (int i = 0; i < tab.length; i++) {
             displayArray(tab[i]);
