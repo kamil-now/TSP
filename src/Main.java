@@ -12,7 +12,10 @@ public class Main {
     public static void main(String[] args) throws Exception {
         _fitnessInfo = FileReaderWriter.readFile(System.getProperty("user.dir") + "\\" + _filePath);
 
-        System.out.println();
+//        Element tmp = new Element(new int[]{3,4,1,6,7,0,9,8,2,5});// Element.getRandom(10);
+//        Element tmp2 =new Element(new int[]{9,1,2,7,4,0,8,6,5,3});// Element.getRandom(10);
+//        Element tmp3 = tmp.crossover(tmp2, 6,8);
+//        System.out.println();
         Population population = new Population(_fitnessInfo, _populationSize, true);
 
         int currentBest = population.getBest().getValue(_fitnessInfo);
@@ -20,7 +23,7 @@ public class Main {
 
         int populations = 1;
         System.out.print("\b\b" + populations);
-        while (currentBest > optimalValue) {
+        while (true) {
 
             Population selected = selection(population);
             selected.calculateFitness(_fitnessInfo);
@@ -84,7 +87,7 @@ public class Main {
         }
     }
 
-    static void mutate(Population population, int _mutationFactor) {
+    static void mutate(Population population, int _mutationFactor) throws Exception {
         for (Element element : population.getElements()) {
             if (_rand.nextInt(101) >= _mutationFactor) {
                 element.mutate();

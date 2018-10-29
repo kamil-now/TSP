@@ -54,7 +54,7 @@ public class Element {
         }
     }
 
-    public void mutate() {
+    public void mutate() throws Exception {
         Random rand = new Random();
         for (int i = 0; i < _data.length; i++) {
             boolean mutate = rand.nextInt(2) == 1;
@@ -62,6 +62,7 @@ public class Element {
                 int tmp = 0;
                 while (tmp == 0)
                     tmp = rand.nextInt(_data.length);
+                _data[Helper.getIndex(_data, tmp)] = _data[i];
                 _data[i] = tmp;
             }
         }
@@ -76,11 +77,15 @@ public class Element {
         }
         for (int i = 0; i < size; i++) {
             if (i >= cross1 && i <= cross2) {
-                retval[i] = this._data[i];
-            } else {
+                retval[i] = tab[i];
+            }
+        }
+        for (int i = 0; i < size; i++) {
+            if (i < cross1 || i > cross2) {
                 int tmp = this._data[i];
                 while (Helper.arrayContains(retval, tmp)) {
-                    tmp = tab[Helper.getIndex(retval, tmp)];
+                    int index = Helper.getIndex(retval, tmp);
+                    tmp = _data[index];
                 }
                 retval[i] = tmp;
             }

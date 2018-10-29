@@ -88,7 +88,7 @@ public class Population {
 
         elements = new ArrayList<>();
         if (init) {
-            initialize(size, fitnessInfo[0].length);
+            initialize(size, fitnessInfo[0].length-1);
            calculateFitness(fitnessInfo);
         }
 
